@@ -72,7 +72,7 @@
         <button onclick="verificarSenha()">Entrar</button>
         <p class="dica" id="dica"></p>
     </div>
-
+  <audio id="som-acerto" src="sounds/acerto.wav" preload="auto"></audio>
     <script>
         
         const senhaCorreta = "tutui"; // 🔑 senha secreta
@@ -82,14 +82,21 @@
             "Dica 2: Você gosta muiito quando ele aparece💕",
             "Dica 3: Conheceu ele na época do cursinho 👀"
         ];
-
+        function tocarSom(id) {
+            const audio = document.getElementById(id);
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }
         function verificarSenha() {
             const senha = document.getElementById("senha").value;
             const dica = document.getElementById("dica");
             const container = document.getElementById("loginBox");
 
             if (senha === senhaCorreta) {
-                container.style.backgroundColor = "#d4edda"; // verde fofinho
+                container.style.backgroundColor = "#d4edda";
+                tocarSom("som-acerto");// verde fofinho
                 alert("Senha correta! Vamos para o quiz 🤍");
                 window.location.href = "quiz.html"; // redireciona
             } else {
@@ -112,5 +119,6 @@
         }
     </script>
 </body>
+
 
 </html>
